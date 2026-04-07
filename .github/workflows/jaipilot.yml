@@ -1,2 +1,30 @@
-- name: JAIPilot - Reach 80%+ Unit Test Coverage on Every PR
-  uses: JAIPilot/jaipilot-cli@v0.3.31
+name: JAIPilot Generate
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: jaipilot-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  generate-tests:
+    if: ${{ github.actor != 'github-actions[bot]' && github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: JAIPilot - Reach 80%+ Unit Test Coverage on Every PR
+        uses: JAIPilot/jaipilot-cli@v0.3.31
