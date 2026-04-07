@@ -1,0 +1,2 @@
+- name: JAIPilot - Reach 80%+ Unit Test Coverage on Every PR
+  uses: JAIPilot/jaipilot-cli@v0.3.31
