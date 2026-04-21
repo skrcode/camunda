@@ -36,6 +36,7 @@ public abstract class AbstractBpmnModelElementBuilder<
   protected final E element;
   protected final B myself;
 
+
   @SuppressWarnings("unchecked")
   protected AbstractBpmnModelElementBuilder(
       final BpmnModelInstance modelInstance, final E element, final Class<?> selfType) {
